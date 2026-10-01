@@ -189,26 +189,4 @@ D2  Onboarding is one screen.              active  reason: A1                   
 
 ## Design record
 
-This skill passes its own gate. Its IDs carry the `EDPD-` prefix so they never collide with a product's IDs; they do not enter any product ledger. Every item was raised by Rubens; Claude wrote them.
-
-```
-[EDPD-A1] Unmarked assumptions become perceived fact through retelling. Source: practitioner observation, unverified.
-[EDPD-A2] Padding is the default in human-written product material. Source: practitioner observation, unverified.
-[EDPD-A3] Extra marker categories cause classification disputes without improving traceability. Source: partly supported (Shipman & Marshall 1999; RAID meaning drift); kappa evidence does not support it.
-[EDPD-A4] Persisted documents derived from the ledger drift from it. Source: observed in Notion use (unrequested pages).
-[EDPD-A5] Imposed form stops a method from fitting systems already in place. Source: owner feedback 2026-09-28.
-[EDPD-A6] Essence-form records carry less context, so the person who raised an item is the main route to the rest. Source: owner feedback 2026-09-28.
-[EDPD-D1] One rule set for all material, no templates. Reason: the invariant does not depend on type.
-[EDPD-D2] Vocabulary is fixed at an intent and four markers. Reason: EDPD-A3.
-[EDPD-D3] The gate admits no exceptions or deferred cleanup on the core. Reason: EDPD-A2; the invariant holds only if it holds everywhere.
-[EDPD-D4] Open-question marker is Q, not ?. Reason: letter IDs match A, D, C and are safe in search, regex, and filenames.
-[EDPD-D5] Records and references to them persist after resolution. Reason: a reopened item must remain traceable.
-[EDPD-D6] Keep four markers; do not merge into two (evidence vs choice). Reason: owner decision after merge analysis.
-[EDPD-D7] The ledger is the single source of truth; documents are temporary views. Reason: EDPD-A4.
-[EDPD-D8] Notion, decision log, and Git ADRs share one fixed model. State: superseded by EDPD-D11.
-[EDPD-D9] Verified facts stay in the ledger as verified records. Reason: EDPD-D7 requires the ledger to be complete on its own.
-[EDPD-D10] Decisions may start as proposed where the system supports it. Reason: matches ADR practice.
-[EDPD-D11] Enforce only the core mechanisms; adapt all form to the existing system, and create nothing when none exists without the user's answer. Reason: EDPD-A5.
-[EDPD-D12] Every record and state change names its author; rely on the system only where it records the same person automatically and reliably. Reason: EDPD-A6.
-[EDPD-Q1] Should strictness relax by artifact type or product maturity? Owner: Rubens.
-```
+This skill passes its own gate. Its IDs carry the `EDPD-` prefix so they never collide with a product's IDs; they do not enter any product ledger. They are recorded in the skill's ledger: https://github.com/bergbacher/essence-driven-product-development/blob/main/LEDGER.md (EDPD-D13).

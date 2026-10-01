@@ -7,9 +7,54 @@ Source of truth for two skills:
 
 Install both. EDPD does not work without find-essence.
 
+## How EDPD works
+
+*View on EDPD skill ledger, 2026-10-01 (EDPD-D7, EDPD-D9, EDPD-D11, EDPD-D12)*
+
+```mermaid
+flowchart TD
+    input["Incoming material<br/>notes · drafts · meetings · existing docs"]
+
+    subgraph GATE["The gate — core, always enforced"]
+        direction TB
+        intent{"Intent clear?"}
+        reduce["Reduce to essence<br/>(find-essence)"]
+        mark["Mark every non-fact<br/>A assumption · D decision<br/>C constraint · Q open question"]
+        link["Link: name the IDs<br/>each record depends on"]
+        check{"Check: IDs exist · none defined twice<br/>every record has an author"}
+        intent -- yes --> reduce --> mark --> link --> check
+    end
+
+    ask["Ask the author<br/>one question"]
+
+    subgraph LEDGER["Ledger — single source of truth"]
+        direction TB
+        records[("Records<br/>ID · type · statement · state · basis · author")]
+        form["Form adapts to what exists<br/>Notion database · decision log · ADRs · spreadsheet<br/>Nothing exists → ask first, create nothing"]
+    end
+
+    request["Someone asks<br/>a question, a deck, a spec, an update"]
+    view["View — generated on request<br/>any name and format · adds nothing · cites IDs<br/>in the reply unless asked to save"]
+
+    change["A record changes state<br/>verified · falsified · reversed · answered"]
+    trace["Traceback<br/>affected set = every record naming the ID"]
+
+    input --> intent
+    intent -- no --> ask
+    check -- "needs author" --> ask
+    ask -. answer .-> intent
+    check -- "write records" --> records
+    request --> view
+    records -- "read current state" --> view
+    view -. "gap found → propose record" .-> intent
+    records --> change --> trace
+    trace -- "re-gate affected records" --> intent
+```
+
 ## Layout
 
 ```
+LEDGER.md                                     EDPD skill ledger: the records behind EDPD's rules
 essence-driven-product-development/SKILL.md   EDPD
 find-essence/SKILL.md                         find-essence
 find-essence/references/fluff-patterns.md     fluff-pattern catalog used by find-essence
@@ -35,4 +80,4 @@ Upload `dist/essence-driven-product-development.zip` and `dist/find-essence.zip`
 
 ## Changing a skill
 
-EDPD passes its own gate. A change to its rules starts as a record in its **Design record** section (`EDPD-A`, `-D`, `-C`, `-Q`, with reason and author), and the rule text follows from that record. Superseded records stay, with their new state.
+EDPD passes its own gate. A change to its rules starts as an entry in [LEDGER.md](LEDGER.md) (`EDPD-A`, `-D`, `-C`, `-Q`, with basis and author), and the rule text in SKILL.md follows from that entry. Entries are never deleted; they change state, with a dated log line.
